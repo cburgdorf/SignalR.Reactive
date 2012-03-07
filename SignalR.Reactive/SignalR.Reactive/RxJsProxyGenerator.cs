@@ -167,7 +167,7 @@ namespace SignalR.Reactive
             sb.AppendLine();
             sb.AppendFormat("            subjectOnNext: function(value) {{ signalR.{0}.subject.onNext(value); }},", hubName);
             sb.AppendLine();
-            sb.AppendFormat("            getObservable: function (eventName) {{ ").AppendLine();
+            sb.AppendFormat("            observe: function (eventName) {{ ").AppendLine();
             sb.AppendFormat("                                return Rx.Observable.create(function (obs) {{ ").AppendLine();
             sb.AppendFormat("                                                var disposable = signalR.{0}.subject ", hubName).AppendLine();
             sb.AppendFormat("                                                    .asObservable() ").AppendLine();
