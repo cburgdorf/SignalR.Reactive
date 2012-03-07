@@ -97,5 +97,4 @@ Both examples can be found in this solution. Just grab the code and run it!
     
 # What's left to say
 
-Up to the moment you need a special SignalR build (comes bundled with this library) to use it.
-I'm quite confident that you won't need that special built from the point on where the new SignalR version comes out.
+You need to grab the latest SignalR build from github to work with this library
