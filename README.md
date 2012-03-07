@@ -42,7 +42,7 @@ Observable properties that live on the hub will automatically be available on th
 So working with them is trivial:
 
     var myHub = $.connection.rxHub;
-    myHub.getObservable('SomeValue').subscribe(function (x) {
+    myHub.observe('SomeValue').subscribe(function (x) {
         $('#counter').html(x);
     });
     $.connection.hub.start();
@@ -78,7 +78,7 @@ Clientside, we invoke the Controller method and subscribe to the dynamically cre
 
     $('#button').click(function () {
         $('#button').attr('disabled', true);
-        myHub.getObservable(guid)
+        myHub.observe(guid)
             .subscribe(function (log) {
                 $('#operationLog').append(log);
                 $('#operationLog').append('<br>');
