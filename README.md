@@ -7,8 +7,8 @@ It's a binding for the Reactive Extensions for SignalR
 If you know Rx in general than you will probably know that the basic idea of Rx is to turn 
 the programming model up side down (from imperative to reactive). 
 
-That's no different with this bindings. Where as the standard SignalR way is to call from the server
-into the client by calling client side JavaScript methods from within a .NET hub, with this bindings 
+That's no different with these bindings. Where as the standard SignalR way is to call from the server
+into the client by calling client side JavaScript functions from within a .NET hub, with these bindings 
 that's no longer the case. Instead you have a serverside Observable<T> and map it one by one onto
 a Observable that lives on the clientside (of course, RxJS is needed on the client)
 
