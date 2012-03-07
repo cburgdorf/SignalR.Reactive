@@ -10,7 +10,7 @@ using SignalR.Infrastructure;
 
 namespace SignalR.Reactive
 {
-    class RxJsProxyGenerator
+    class RxJsProxyGenerator : IJavaScriptProxyGenerator
     {
         private static readonly Lazy<string> _template = new Lazy<string>(GetTemplate);
         private static readonly ConcurrentDictionary<string, string> _scriptCache = new ConcurrentDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -78,7 +78,7 @@ namespace SignalR.Reactive
             var members = methods.Select(m => m.Name).ToList();
 
             // Get observable properties declared on this type
-            var observableProperties = ReflectionHelper.GetExportedHubObservables(type);
+            var observableProperties = ExtendedReflectionHelper.GetExportedHubObservables(type);
 
             members.Add("namespace");
             members.Add("ignoreMembers");

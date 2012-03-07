@@ -9,7 +9,7 @@ namespace SignalR.Reactive
     public class Clientside<T>
     {
         private readonly IObservable<T> _observable;
-
+        
         internal Clientside(IObservable<T> observable)
         {
             _observable = observable;
@@ -39,7 +39,7 @@ namespace SignalR.Reactive
         public IDisposable Observable<THub>(string eventName, string clientName) where THub : Hub, new()
         {
             var connectionManager = AspNetHost.DependencyResolver.Resolve<IConnectionManager>();
-
+            
             dynamic clients = connectionManager.GetClients<THub>();
             clients = string.IsNullOrEmpty(clientName) ? clients : clients[clientName];
 
