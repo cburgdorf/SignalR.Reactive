@@ -1,8 +1,10 @@
-﻿using SignalR.Hosting.AspNet;
+﻿using System.Web;
+using SignalR.Hosting.AspNet;
 
+[assembly: PreApplicationStartMethod(typeof(SignalR.Reactive.Configuration), "EnableRxSupport")]
 namespace SignalR.Reactive
 {
-    public class Configuration
+    public static class Configuration
     {
         public static void EnableRxSupport()
         {

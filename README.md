@@ -24,9 +24,6 @@ a Observable that lives on the clientside (of course, RxJS is needed on the clie
         RegisterGlobalFilters(GlobalFilters.Filters);
         RegisterRoutes(RouteTable.Routes);
 
-        //First, enable Rx Support so that you get the extended proxy generation
-        Configuration.EnableRxSupport();
-
         //HOT STUFF
         //We have a serverside IObservable<string> that gets published on the client side
         //We essentially say map this Observable to an Observable property on the hub
