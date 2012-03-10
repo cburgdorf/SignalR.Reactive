@@ -26,16 +26,14 @@ a Observable that lives on the clientside (of course, RxJS is needed on the clie
 
         //HOT STUFF
         //We have a serverside IObservable<string> that gets published on the client side
-        //We essentially say map this Observable to an Observable property on the hub
 
         Observable
             .Interval(TimeSpan.FromSeconds(1))
             .Select(_ => DateTime.Now.ToLongTimeString())
-            .ToClientside().Observable<RxHub>(x => x.SomeValue);
+            .ToClientside().Observable<RxHub>("SomeValue");
     }
     
-We essentially say, take this Observable and map it to the Observable property "SomeValue" that lives on the hub.
-Observable properties that live on the hub will automatically be available on the client side.
+We essentially say, take this Observable and map it to the Observable property "SomeValue" that lives on the client.
 So working with them is trivial:
 
     var myHub = $.connection.rxHub;
