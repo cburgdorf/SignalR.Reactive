@@ -49,7 +49,7 @@ namespace SignalR.Reactive
                 () => clients.Invoke("subjectOnNext", new { EventName = eventName, Type = "onCompleted" })
                 );
         }
-
+        
     }
 
     public static class SignalRObservableExtensions
