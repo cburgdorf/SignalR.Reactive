@@ -8,7 +8,6 @@ namespace SignalR.Reactive.Demo.Models
 
     public class RxHub : Hub
     {
-
         public void MoveShape(int x, int y)
         {
             this.RaiseOnNext("ShapeMoved", new
