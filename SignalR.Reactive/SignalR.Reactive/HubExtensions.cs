@@ -13,6 +13,12 @@ namespace SignalR.Reactive
             return string.IsNullOrEmpty(clientName) ? hub.Clients : hub.Clients[clientName];
         }
 
+        private static void WithClient(Hub hub, string clientName, Action<dynamic> continueWith)
+        {
+            var clients = GetClients(hub, clientName);
+            continueWith(clients);
+        }
+
         public static void RaiseOnNext<T>(this Hub hub, string eventName, T payload)
         {
             RaiseOnNext(hub,eventName, null, payload);
@@ -20,8 +26,8 @@ namespace SignalR.Reactive
 
         public static void RaiseOnNext<T>(this Hub hub, string eventName, string clientName, T payload)
         {
-            var clients = GetClients(hub, clientName);
-            clients.Invoke("subjectOnNext", new { Data = payload, EventName = eventName, Type = "onNext" });
+            WithClient(hub, clientName, 
+                clients => clients.Invoke(ClientsideConstants.OnNextMethodName, new { Data = payload, EventName = eventName, Type = ClientsideConstants.OnNextType }));
         }
 
         public static void RaiseOnError<T>(this Hub hub, string eventName, T payload)
@@ -31,8 +37,8 @@ namespace SignalR.Reactive
 
         public static void RaiseOnError<T>(this Hub hub, string eventName, string clientName, T payload)
         {
-            var clients = GetClients(hub, clientName);
-            clients.Invoke("subjectOnNext", new { Data = payload, EventName = eventName, Type = "onError" });
+            WithClient(hub, clientName,
+                clients => clients.Invoke(ClientsideConstants.OnNextMethodName, new { Data = payload, EventName = eventName, Type = ClientsideConstants.OnErrorType }));
         }
 
         public static void RaiseCompleted(this Hub hub, string eventName)
@@ -42,8 +48,8 @@ namespace SignalR.Reactive
 
         public static void RaiseCompleted(this Hub hub, string eventName, string clientName)
         {
-            var clients = GetClients(hub, clientName);
-            clients.Invoke("subjectOnNext", new { EventName = eventName, Type = "onCompleted" });
+            WithClient(hub, clientName, 
+                clients => clients.Invoke(ClientsideConstants.OnNextMethodName, new { EventName = eventName, Type = ClientsideConstants.OnCompletedType }));
         }
     }
 }

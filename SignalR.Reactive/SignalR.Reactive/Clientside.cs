@@ -28,9 +28,9 @@ namespace SignalR.Reactive
             clients = string.IsNullOrEmpty(clientName) ? clients : clients[clientName];
 
             return _observable.Subscribe(
-                x => clients.Invoke("subjectOnNext", new { Data = x, EventName = eventName, Type = "onNext" }),
-                x => clients.Invoke("subjectOnNext", new { Data = x, EventName = eventName, Type = "onError" }),
-                () => clients.Invoke("subjectOnNext", new { EventName = eventName, Type = "onCompleted" })
+                x => clients.Invoke(ClientsideConstants.OnNextMethodName, new { Data = x, EventName = eventName, Type = ClientsideConstants.OnNextType }),
+                x => clients.Invoke(ClientsideConstants.OnNextMethodName, new { Data = x, EventName = eventName, Type = ClientsideConstants.OnErrorType }),
+                () => clients.Invoke(ClientsideConstants.OnNextMethodName, new { EventName = eventName, Type = ClientsideConstants.OnCompletedType })
                 );
         }
         

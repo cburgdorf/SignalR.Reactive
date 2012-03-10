@@ -12,6 +12,7 @@
                 $shape.css({ left: data.X, top: data.Y });
             }
         });
+
         $.connection.hub.start().done(function () {
             $shape.draggable({
                 drag: function() {

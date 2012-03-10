@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clientside.cs" />
+    <Compile Include="ClientsideConstants.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="DependencyResolverExtensions.cs" />
     <Compile Include="HubExtensions.cs" />

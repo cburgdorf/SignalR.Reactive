@@ -17,6 +17,5 @@ namespace SignalR.Reactive.Demo.Models
                 Y = y
             });
         }
-
     }
 }
