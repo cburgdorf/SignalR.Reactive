@@ -39,12 +39,11 @@ namespace SignalR.Reactive.Demo
 
             //HOT STUFF
             //We have a serverside IObservable<string> that gets published on the client side
-            //We essentially say map this Observable to an Observable property on the hub
 
             Observable
                 .Interval(TimeSpan.FromSeconds(1))
                 .Select(_ => DateTime.Now.ToLongTimeString())
-                .ToClientside().Observable<RxHub>(x => x.SomeValue);
+                .ToClientside().Observable<RxHub>("SomeValue");
         }
 
     }
