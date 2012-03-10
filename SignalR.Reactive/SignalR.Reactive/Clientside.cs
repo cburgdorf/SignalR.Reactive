@@ -14,23 +14,7 @@ namespace SignalR.Reactive
         {
             _observable = observable;
         }
-
-        public IDisposable Observable<THub>(Expression<Func<THub, dynamic>> expression) where THub : Hub, new()
-        {
-            return Observable(expression, null);
-        }
-
-        public IDisposable Observable<THub>(Expression<Func<THub, dynamic>> expression, string clientName) where THub : Hub, new()
-        {
-            var memberExpression = expression.Body as MemberExpression;
-            if (memberExpression == null)
-            {
-                throw new ArgumentException("'expression' should be a member expression");
-            }
-
-            return Observable<THub>(memberExpression.Member.Name, clientName);
-        }
-
+        
         public IDisposable Observable<THub>(string eventName) where THub : Hub, new()
         {
             return Observable<THub>(eventName, null);
