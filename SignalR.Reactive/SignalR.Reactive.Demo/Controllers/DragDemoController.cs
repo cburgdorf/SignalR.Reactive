@@ -12,7 +12,5 @@ namespace SignalR.Reactive.Demo.Controllers
         {
             return View();
         }
-
-        
     }
 }
