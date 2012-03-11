@@ -57,6 +57,7 @@
     <Compile Include="DependencyResolverExtensions.cs" />
     <Compile Include="HubExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RxHelper.cs" />
     <Compile Include="RxJsProxyGenerator.cs" />
   </ItemGroup>
   <ItemGroup>

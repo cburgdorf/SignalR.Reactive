@@ -22,9 +22,8 @@ namespace SignalR.Reactive
 
         public IDisposable Observable<THub>(string eventName, string clientName) where THub : Hub, new()
         {
-            var connectionManager = DependencyResolverContext.Instance.Resolve<IConnectionManager>();
-            
-            dynamic clients = connectionManager.GetClients<THub>();
+            dynamic clients = RxHelper.GetHubClients<THub>();
+
             clients = string.IsNullOrEmpty(clientName) ? clients : clients[clientName];
 
             return _observable.Subscribe(
