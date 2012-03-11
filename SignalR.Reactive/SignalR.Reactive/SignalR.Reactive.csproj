@@ -53,6 +53,7 @@
     <Compile Include="Clientside.cs" />
     <Compile Include="ClientsideConstants.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="DependencyResolverContext.cs" />
     <Compile Include="DependencyResolverExtensions.cs" />
     <Compile Include="HubExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
