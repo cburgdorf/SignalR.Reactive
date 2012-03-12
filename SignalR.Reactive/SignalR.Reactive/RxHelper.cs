@@ -21,10 +21,14 @@ namespace SignalR.Reactive
             return GetHubClients(clients, clientName);
         }
 
-        public static dynamic GetHubClients<THub>(Hub hub, string clientName) where THub : Hub, new()
+        public static dynamic GetHubClients(Hub hub, string clientName)
         {
-            var clients = GetHubClients<THub>();
-            return GetHubClients(clients, clientName);
+            return GetHubClients(hub.Clients, clientName);
+        }
+
+        public static dynamic GetHubClients(dynamic clients, string clientName)
+        {
+            return string.IsNullOrEmpty(clientName) ? clients : clients[clientName];
         }
 
         public static void WithClient(Hub hub, string clientName, Action<dynamic> continueWith)
@@ -37,11 +41,6 @@ namespace SignalR.Reactive
         {
             var clients = GetHubClients<THub>(clientName);
             continueWith(clients);
-        }
-
-        public static dynamic GetHubClients(dynamic clients, string clientName)
-        {
-            return string.IsNullOrEmpty(clientName) ? clients : clients[clientName];
         }
 
         public static void RaiseOnNext<T>(string eventName, dynamic clients, T payload)
