@@ -66,32 +66,32 @@ namespace SignalR.Reactive
 
     public class RxHubRaiser<THub> where THub : Hub, new()
     {
-        public void Next<T>(string eventName, T payload)
+        public void OnNext<T>(string eventName, T payload)
         {
-            Next(eventName, null, payload);
+            OnNext(eventName, null, payload);
         }
 
-        public void Next<T>(string eventName, string clientName, T payload)
+        public void OnNext<T>(string eventName, string clientName, T payload)
         {
             RxHelper.WithClient<THub>(clientName, clients => RxHelper.RaiseOnNext(eventName, clients, payload));
         }
 
-        public void Error(string eventName, Exception exception)
+        public void OnError(string eventName, Exception exception)
         {
-            Error(eventName, null, exception);
+            OnError(eventName, null, exception);
         }
 
-        public void Error(string eventName, string clientName, Exception exception)
+        public void OnError(string eventName, string clientName, Exception exception)
         {
             RxHelper.WithClient<THub>(clientName, clients => RxHelper.RaiseOnError(eventName, clients, exception));
         }
 
-        public void Completed(string eventName)
+        public void OnCompleted(string eventName)
         {
-            Completed(eventName, null);
+            OnCompleted(eventName, null);
         }
 
-        public void Completed(string eventName, string clientName)
+        public void OnCompleted(string eventName, string clientName)
         {
             RxHelper.WithClient<THub>(clientName, clients => RxHelper.RaiseOnCompleted(eventName, clients));
         }
