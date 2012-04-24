@@ -9,7 +9,7 @@ namespace SignalR.Reactive
     {
         public static void EnableRxSupport()
         {
-            DependencyResolverContext.Instance = Global.DependencyResolver;
+            DependencyResolverContext.Instance = GlobalHost.DependencyResolver;
             
             if (DependencyResolverContext.Instance == null)
                 throw new InvalidOperationException("DependenyResolver must be set to an instance of IDependencyResolver");
