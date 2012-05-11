@@ -92,4 +92,4 @@ Both examples can be found in this solution. Just grab the code and run it!
     
 # What's left to say
 
-You need to grab the latest SignalR build from github to work with this library
+This version of SignalR.Reactive works with SignalR 0.5
