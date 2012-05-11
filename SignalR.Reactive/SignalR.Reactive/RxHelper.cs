@@ -12,7 +12,7 @@ namespace SignalR.Reactive
         public static dynamic GetHubClients<THub>() where THub : Hub, new()
         {
             var connectionManager = DependencyResolverContext.Instance.Resolve<IConnectionManager>();
-            return connectionManager.GetClients<THub>();
+            return connectionManager.GetHubContext<THub>().Clients;
         }
 
         public static dynamic GetHubClients<THub>(string clientName) where THub : Hub, new()
@@ -45,17 +45,17 @@ namespace SignalR.Reactive
 
         public static void RaiseOnNext<T>(string eventName, dynamic clients, T payload)
         {
-            clients.Invoke(ClientsideConstants.OnNextMethodName, new { Data = payload, EventName = eventName, Type = ClientsideConstants.OnNextType});
+            clients.subjectOnNext(new { Data = payload, EventName = eventName, Type = ClientsideConstants.OnNextType });
         }
 
         public static void RaiseOnError(string eventName, dynamic clients, Exception payload)
         {
-            clients.Invoke(ClientsideConstants.OnNextMethodName,new { Data = payload, EventName = eventName, Type = ClientsideConstants.OnErrorType});
+            clients.subjectOnNext(new { Data = payload, EventName = eventName, Type = ClientsideConstants.OnErrorType });
         }
 
         public static void RaiseOnCompleted(string eventName, dynamic clients)
         {
-            clients.Invoke(ClientsideConstants.OnNextMethodName, new { EventName = eventName, Type = ClientsideConstants.OnCompletedType});
+            clients.subjectOnNext(new { EventName = eventName, Type = ClientsideConstants.OnCompletedType });
         }
 
         public static RxHubRaiser<T> RaiseOn<T>() where T : Hub, new()
