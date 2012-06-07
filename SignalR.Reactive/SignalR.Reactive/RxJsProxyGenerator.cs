@@ -148,7 +148,7 @@ namespace SignalR.Reactive
             sb.AppendFormat("            subjectOnNext: function(value) {{ signalR.{0}.subject.onNext(value); }},", hubName).AppendLine();
 
             sb.AppendFormat("            observe: function (eventName) {{ ").AppendLine();
-            sb.AppendFormat("                                return Rx.Observable.create(function (obs) {{ ").AppendLine();
+            sb.AppendFormat("                                return Rx.Observable.createWithDisposable(function (obs) {{ ").AppendLine();
             sb.AppendFormat("                                                var disposable = signalR.{0}.subject ", hubName).AppendLine();
             sb.AppendFormat("                                                    .asObservable() ").AppendLine();
             sb.AppendFormat("                                                    .where(function (x) {{ return x.EventName.toLowerCase() === eventName.toLowerCase(); }}) ").AppendLine();
@@ -157,7 +157,7 @@ namespace SignalR.Reactive
             sb.AppendFormat("                                                        if (x.Type === 'onError') obs.onError(x.Data); ").AppendLine();
             sb.AppendFormat("                                                        if (x.Type === 'onCompleted') obs.onCompleted(); ").AppendLine();
             sb.AppendFormat("                                                    }}); ").AppendLine();
-            sb.AppendFormat("                                                return disposable.dispose; ").AppendLine();
+            sb.AppendFormat("                                                return disposable; ").AppendLine();
             sb.AppendFormat("                                 }}); ").AppendLine();
             sb.AppendFormat("                             }} ").AppendLine();
         }
