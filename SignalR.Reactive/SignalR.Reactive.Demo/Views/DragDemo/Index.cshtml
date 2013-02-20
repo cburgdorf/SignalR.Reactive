@@ -15,7 +15,7 @@
 
         $.connection.hub.start().done(function () {
             $shape.draggable({
-                drag: function() {
+                drag: function () {
                     myHub.moveShape(this.offsetLeft, this.offsetTop || 0);
                 }
             });
