@@ -153,7 +153,7 @@ namespace SignalR.Reactive
         {
             var hubName = Json.CamelCase(descriptor.Name);
             sb.AppendFormat("            ,").AppendLine();
-            sb.AppendFormat("            subject : new Rx.Subject(),").AppendLine();
+            sb.AppendFormat("            subject : $.extend(new Rx.Subject(), {{toJSON: function() {{}}}}),").AppendLine();
             sb.AppendFormat("            subjectOnNext: function(value) {{ signalR.{0}.subject.onNext(value); }},", hubName).AppendLine();
 
             sb.AppendFormat("            observe: function (eventName) {{ ").AppendLine();
